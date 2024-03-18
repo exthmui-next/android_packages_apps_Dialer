@@ -26,6 +26,10 @@ public final class LookupSettings {
   public static final String FLP_OPENSTREETMAP = "OpenStreetMap";
   public static final String FLP_DEFAULT = FLP_OPENSTREETMAP;
 
+  /** People lookup providers */
+  public static final String PLP_AUSKUNFT = "Auskunft";
+  public static final String PLP_DEFAULT = PLP_AUSKUNFT;
+
   /** Reverse lookup providers */
   public static final String RLP_YELLOWPAGES = "YellowPages";
   public static final String RLP_YELLOWPAGES_CA = "YellowPages_CA";
@@ -37,8 +41,10 @@ public final class LookupSettings {
   /** Preferences */
   private static final String SHARED_PREFERENCES_NAME = "lookup_settings";
   private static final String ENABLE_FORWARD_LOOKUP = "enable_forward_lookup";
+  private static final String ENABLE_PEOPLE_LOOKUP = "enable_people_lookup";
   private static final String ENABLE_REVERSE_LOOKUP = "enable_reverse_lookup";
   private static final String FORWARD_LOOKUP_PROVIDER = "forward_lookup_provider2";
+  private static final String PEOPLE_LOOKUP_PROVIDER = "people_lookup_provider";
   private static final String REVERSE_LOOKUP_PROVIDER = "reverse_lookup_provider2";
 
   private LookupSettings() {
@@ -57,6 +63,14 @@ public final class LookupSettings {
     getSharedPreferences(context).edit().putBoolean(ENABLE_FORWARD_LOOKUP, value).apply();
   }
 
+  public static boolean isPeopleLookupEnabled(Context context) {
+    return getSharedPreferences(context).getBoolean(ENABLE_PEOPLE_LOOKUP, false);
+  }
+
+  public static void setPeopleLookupEnabled(Context context, boolean value) {
+    getSharedPreferences(context).edit().putBoolean(ENABLE_PEOPLE_LOOKUP, value).commit();
+  }
+
   public static boolean isReverseLookupEnabled(Context context) {
     return getSharedPreferences(context).getBoolean(ENABLE_REVERSE_LOOKUP, false);
   }
@@ -71,6 +85,14 @@ public final class LookupSettings {
 
   public static void setForwardLookupProvider(Context context, String value) {
     getSharedPreferences(context).edit().putString(FORWARD_LOOKUP_PROVIDER, value).apply();
+  }
+
+  public static String getPeopleLookupProvider(Context context) {
+    return getSharedPreferences(context).getString(PEOPLE_LOOKUP_PROVIDER, PLP_DEFAULT);
+  }
+
+  public static void setPeopleLookupProvider(Context context, String value) {
+    getSharedPreferences(context).edit().putString(PEOPLE_LOOKUP_PROVIDER, value).commit();
   }
 
   public static String getReverseLookupProvider(Context context) {

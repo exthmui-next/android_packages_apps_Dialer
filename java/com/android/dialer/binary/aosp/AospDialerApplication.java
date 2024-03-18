@@ -57,7 +57,8 @@ public class AospDialerApplication extends DialerApplication implements
     return new PhoneDirectoryExtender() {
       @Override
       public boolean isEnabled(Context context) {
-        return LookupSettings.isForwardLookupEnabled(AospDialerApplication.this);
+        return LookupSettings.isForwardLookupEnabled(AospDialerApplication.this)
+            || LookupSettings.isPeopleLookupEnabled(AospDialerApplication.this);
       }
 
       @Override
