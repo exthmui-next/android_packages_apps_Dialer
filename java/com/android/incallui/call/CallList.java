@@ -34,10 +34,16 @@ import androidx.annotation.Nullable;
 
 import com.android.dialer.common.Assert;
 import com.android.dialer.common.LogUtil;
+import com.android.dialer.common.concurrent.DialerExecutorComponent;
 import com.android.dialer.promotion.impl.RttPromotion;
 import com.android.dialer.shortcuts.ShortcutUsageReporter;
+import com.android.dialer.telecom.TelecomCallUtil;
 import com.android.incallui.call.state.DialerCallState;
 import com.android.incallui.videotech.utils.SessionModificationState;
+
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -46,6 +52,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+
+import org.exthmui.yellowpage.PhoneNumberTag;
 
 /**
  * Maintains the list of active calls and notifies interested classes of changes to the call list as
@@ -115,6 +123,27 @@ public class CallList implements DialerCallDelegate {
     Trace.beginSection("checkSpam");
     call.addListener(new DialerCallListenerImpl(call));
     LogUtil.d("CallList.onCallAdded", "callState=" + call.getState());
+    Trace.endSection();
+
+    Trace.beginSection("checkCallerTag");
+    String number = TelecomCallUtil.getNumber(telecomCall);
+    ListenableFuture<PhoneNumberTag.PhoneNumberInfo> pInfoStatus = PhoneNumberTag.getPhoneNumberInfoLF(context, number, call.getCountryIso());
+    Futures.addCallback(
+        pInfoStatus,
+        new FutureCallback<PhoneNumberTag.PhoneNumberInfo>() {
+          @Override
+          public void onSuccess(@Nullable PhoneNumberTag.PhoneNumberInfo result) {
+            call.setCallerInfo(result);
+            onUpdateCall(call);
+            notifyGenericListeners();
+          }
+
+          @Override
+          public void onFailure(Throwable t) {
+            LogUtil.e("CallList.onFailure", "unable to query exTHmUI caller tag", t);
+          }
+        },
+        DialerExecutorComponent.get(context).uiExecutor());
     Trace.endSection();
 
     Trace.beginSection("checkBlock");

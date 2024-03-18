@@ -182,7 +182,7 @@ public class MissedCallNotifier implements Worker<Pair<Integer, String>, Void> {
                 BidiFormatter.getInstance()
                     .unicodeWrap(contactInfo.name, TextDirectionHeuristics.LTR));
       } else {
-        expandedText = contactInfo.name;
+        expandedText = contactInfo.name + " " + contactInfo.formattedNumber;
       }
 
       ContactPhotoLoader loader = new ContactPhotoLoader(context, contactInfo);
@@ -318,7 +318,7 @@ public class MissedCallNotifier implements Worker<Pair<Integer, String>, Void> {
               BidiFormatter.getInstance()
                   .unicodeWrap(contactInfo.name, TextDirectionHeuristics.LTR));
     } else {
-      expandedText = contactInfo.name;
+      expandedText = contactInfo.name + " " + contactInfo.formattedNumber;
     }
 
     if (postCallMessage != null) {

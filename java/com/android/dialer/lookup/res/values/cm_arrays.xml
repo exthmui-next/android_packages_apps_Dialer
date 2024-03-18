@@ -24,6 +24,7 @@
     </string-array>
 
     <string-array name="reverse_lookup_providers" translatable="false">
+        <item>exTHmUI</item>
         <item>DasTelefonbuch</item>
         <item>YellowPages</item>
         <item>YellowPages_CA</item>
@@ -31,6 +32,7 @@
     </string-array>
 
     <string-array name="reverse_lookup_provider_names" translatable="false">
+        <item>exTHmUI (CN)</item>
         <item>Das Telefonbuch (DE)</item>
         <item>YellowPages (US)</item>
         <item>YellowPages (CA)</item>

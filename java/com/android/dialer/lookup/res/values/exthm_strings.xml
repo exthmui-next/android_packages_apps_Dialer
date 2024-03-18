@@ -15,6 +15,7 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="phone_number_suggestions">Suggestions</string>
     <!-- People lookup -->
     <string name="enable_people_lookup_title">People lookup</string>
     <string name="enable_people_lookup_summary">Show online results for people when searching in the dialer</string>

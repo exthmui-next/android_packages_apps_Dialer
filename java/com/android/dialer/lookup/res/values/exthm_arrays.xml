@@ -16,10 +16,10 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string-array name="people_lookup_providers" translatable="false">
-        <item>Auskunft</item>
+        <item>exTHmUI</item>
     </string-array>
 
     <string-array name="people_lookup_provider_names" translatable="false">
-        <item>Auskunft (AT)</item>
+        <item>exTHmUI (CN)</item>
     </string-array>
 </resources>

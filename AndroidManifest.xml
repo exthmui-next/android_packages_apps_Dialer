@@ -110,6 +110,9 @@
     <!-- Required to close the notification shade -->
     <uses-permission android:name="android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS" />
 
+    <!--for exTHmUI YellowPage-->
+    <uses-permission android:name="org.exthmui.yellowpage.READ_YELLOWPAGES"/>
+
     <application
         android:name="com.android.dialer.binary.aosp.AospDialerApplication"
         android:appCategory="social"

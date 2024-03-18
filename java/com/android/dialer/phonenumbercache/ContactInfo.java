@@ -26,7 +26,7 @@ import com.android.dialer.logging.ContactSource;
 import com.android.dialer.util.UriUtils;
 
 /** Information for a contact as needed by the Call Log. */
-public class ContactInfo {
+public class ContactInfo implements Cloneable {
 
   public static final ContactInfo EMPTY = new ContactInfo();
   public Uri lookupUri;
@@ -138,6 +138,17 @@ public class ContactInfo {
       return false;
     }
     return true;
+  }
+
+  @Override
+  public ContactInfo clone(){
+    ContactInfo info = null;
+    try {
+      info = (ContactInfo)super.clone();
+    } catch (CloneNotSupportedException e) {
+      e.printStackTrace();
+    }
+    return info;
   }
 
   @Override

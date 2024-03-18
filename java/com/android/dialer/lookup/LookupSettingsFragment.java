@@ -39,7 +39,7 @@ public class LookupSettingsFragment extends PreferenceFragmentCompat
   private static final String KEY_REVERSE_LOOKUP_PROVIDER = "reverse_lookup_provider";
 
   private SwitchPreferenceCompat enableForwardLookup;
-  private SwitchPreference enablePeopleLookup;
+  private SwitchPreferenceCompat enablePeopleLookup;
   private SwitchPreferenceCompat enableReverseLookup;
   private ListPreference forwardLookupProvider;
   private ListPreference peopleLookupProvider;
@@ -56,7 +56,7 @@ public class LookupSettingsFragment extends PreferenceFragmentCompat
     addPreferencesFromResource(R.xml.lookup_settings);
 
     enableForwardLookup = (SwitchPreferenceCompat) findPreference(KEY_ENABLE_FORWARD_LOOKUP);
-    enablePeopleLookup = (SwitchPreference) findPreference(KEY_ENABLE_PEOPLE_LOOKUP);
+    enablePeopleLookup = (SwitchPreferenceCompat) findPreference(KEY_ENABLE_PEOPLE_LOOKUP);
     enableReverseLookup = (SwitchPreferenceCompat) findPreference(KEY_ENABLE_REVERSE_LOOKUP);
 
     enableForwardLookup.setOnPreferenceChangeListener(this);

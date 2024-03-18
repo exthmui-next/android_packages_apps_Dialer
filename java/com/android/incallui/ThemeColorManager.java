@@ -47,21 +47,28 @@ public class ThemeColorManager {
 
   public void onForegroundCallChanged(Context context, @Nullable DialerCall newForegroundCall) {
     if (newForegroundCall == null) {
-      updateThemeColors(context, false);
+      updateThemeColors(context, false, 0);
     } else {
-      updateThemeColors(context, newForegroundCall.isSpam());
+      updateThemeColors(context, newForegroundCall.isSpam(), newForegroundCall.getCallerType());
     }
   }
 
-  private void updateThemeColors(Context context, boolean isSpam) {
+  private void updateThemeColors(Context context, boolean isSpam, int callerType) {
     MaterialPalette palette;
-    if (isSpam) {
+    if (isSpam || callerType < 0) {
       palette =
           colorMap.calculatePrimaryAndSecondaryColor(R.color.incall_call_spam_background_color);
       backgroundColorTop = context.getColor(R.color.incall_background_gradient_spam_top);
       backgroundColorMiddle = context.getColor(R.color.incall_background_gradient_spam_middle);
       backgroundColorBottom = context.getColor(R.color.incall_background_gradient_spam_bottom);
       backgroundColorSolid = context.getColor(R.color.incall_background_multiwindow_spam);
+    } else if (callerType > 0) {
+      palette =
+          colorMap.calculatePrimaryAndSecondaryColor(R.color.incall_call_service_background_color);
+      backgroundColorTop = context.getColor(R.color.incall_background_gradient_service_top);
+      backgroundColorMiddle = context.getColor(R.color.incall_background_gradient_service_middle);
+      backgroundColorBottom = context.getColor(R.color.incall_background_gradient_service_bottom);
+      backgroundColorSolid = context.getColor(R.color.incall_background_multiwindow_service);
     } else {
       palette = colorMap.calculatePrimaryAndSecondaryColor(NO_HIGHLIGHT_COLOR);
       backgroundColorTop = context.getColor(R.color.incall_background_gradient_top);

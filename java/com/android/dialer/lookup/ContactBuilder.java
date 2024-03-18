@@ -66,6 +66,10 @@ public class ContactBuilder {
       return new ContactBuilder(DirectoryId.NEARBY, null, number);
   }
 
+  public static ContactBuilder forPeopleLookup(String number) {
+      return new ContactBuilder(DirectoryId.PEOPLE, null, number);
+  }
+
   public static ContactBuilder forReverseLookup(String normalizedNumber, String formattedNumber) {
       return new ContactBuilder(DirectoryId.NULL, normalizedNumber, formattedNumber);
   }

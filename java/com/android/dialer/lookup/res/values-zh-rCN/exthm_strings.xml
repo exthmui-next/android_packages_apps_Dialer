@@ -16,6 +16,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- People lookup -->
+    <string name="phone_number_suggestions">电话号码建议</string>
     <string name="enable_people_lookup_title">人名查询</string>
     <string name="enable_people_lookup_summary">在拨号器中搜索时显示在线人名搜索结果</string>
     <string name="people_lookup_provider_title">人名查询提供商</string>
