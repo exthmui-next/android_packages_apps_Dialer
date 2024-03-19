@@ -33,7 +33,7 @@
     android:textColor="?android:attr/textColorSecondary"
     android:textSize="@dimen/empty_list_message_text_size"/>
 
-  <com.google.android.material.button.MaterialButton
+  <Button
     android:id="@+id/empty_list_view_action"
     style="@style/DialerPrimaryFlatButtonStyle"
     android:layout_width="wrap_content"
