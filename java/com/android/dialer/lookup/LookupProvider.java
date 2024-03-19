@@ -279,6 +279,7 @@ public class LookupProvider extends ContentProvider {
         results.addAll(nearby);
       }
     }
+    int splitter = results.size();
     if (type == PEOPLE || type == NEARBY_AND_PEOPLE) {
       PeopleLookup pl = PeopleLookup.getInstance(getContext());
       List<ContactInfo> people = pl.lookup(getContext(), filter);
@@ -287,7 +288,6 @@ public class LookupProvider extends ContentProvider {
       }
     }
 
-    int splitter = results.size();
     if (results.isEmpty()) {
       if (DEBUG) Log.v(TAG, "handleFilter(" + filter + "): No results");
       return null;
